@@ -128,7 +128,7 @@ func (p *ProductManager) SelectByKey(productId int64) (productResult *datamodels
 	if err != nil {
 		return
 	}
-	defer rows.Close()
+	defer row.Close()
 
 	result := common.GetResultRow(row)
 	if len(result) <= 0 {
