@@ -1,6 +1,7 @@
 package common
 
 import "database/sql"
+import _ "github.com/go-sql-driver/mysql"
 
 //创建mysql链接
 func NewMysqlConn() (db *sql.DB, err error) {
@@ -46,11 +47,12 @@ func GetResultRows(rows *sql.Rows) map[int]map[string]string {
 	result := make(map[int]map[string]string)
 	for rows.Next() {
 		rows.Scan(scans...)
-		for j, v := range vals {
-			if v != nil {
-				result[i][columns[j]] = string(v)
-			}
+		row := make(map[string]string)
+		for k, v := range vals {
+			key := columns[k]
+			row[key] = string(v)
 		}
+		result[i] = row
 		i++
 	}
 

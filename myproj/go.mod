@@ -10,6 +10,7 @@ require (
 	github.com/etcd-io/bbolt v1.3.3 // indirect
 	github.com/fasthttp-contrib/websocket v0.0.0-20160511215533-1f3b11f56072 // indirect
 	github.com/gavv/httpexpect v2.0.0+incompatible // indirect
+	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gomodule/redigo v1.8.2 // indirect
 	github.com/hashicorp/go-version v1.2.1 // indirect
 	github.com/iris-contrib/blackfriday v2.0.0+incompatible // indirect

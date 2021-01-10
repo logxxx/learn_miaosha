@@ -4,6 +4,7 @@ import (
 	"app/common"
 	"app/datamodels"
 	"database/sql"
+	"fmt"
 	"strconv"
 )
 
@@ -33,7 +34,7 @@ func (p *ProductManager) Conn() (err error) {
 	if p.mysqlConn == nil {
 		mysql, err := common.NewMysqlConn()
 		if err != nil {
-			return
+			return err
 		}
 		p.mysqlConn = mysql
 	}
@@ -98,8 +99,9 @@ func (p *ProductManager) Update(product *datamodels.Product) (err error) {
 		return
 	}
 
-	sql := "UPDATE  " + p.table + " SET(product_name, product_num, product_image, product_url) VALUES(?,?,?,?) WHERE id="+strconv.FormatInt(product.ID, 10)
+	sql := "UPDATE  " + p.table + " SET product_name=?, product_num=?, product_image=?, product_url=? WHERE id="+strconv.FormatInt(product.ID, 10)
 
+	fmt.Println("Update sql:", sql)
 	stmt, err := p.mysqlConn.Prepare(sql)
 	if err != nil {
 		return
