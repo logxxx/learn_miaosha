@@ -13,7 +13,7 @@ type IProduct interface {
 	Delete(int64) bool
 	Update(product *datamodels.Product) error
 	SelectByKey(int64) (*datamodels.Product, error)
-	SelectAll([]*datamodels.Product, error)
+	SelectAll()([]*datamodels.Product, error)
 }
 
 type ProductManager struct {
@@ -141,7 +141,7 @@ func (p *ProductManager) SelectByKey(productId int64) (productResult *datamodels
 }
 
 //5.查询所有商品
-func (p *ProductManager)SelectAll(productArr []*datamodels.Product, err error) {
+func (p *ProductManager)SelectAll()(productArr []*datamodels.Product, err error) {
 	productArr = make([]*datamodels.Product, 0)
 	//1.判断链接是否存在
 	if err = p.Conn(); err != nil {
